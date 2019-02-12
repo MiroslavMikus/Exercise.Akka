@@ -44,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actors\PlaybackActor.cs" />
+    <Compile Include="Actors\UserActor.cs" />
     <Compile Include="ColorConsole.cs" />
     <Compile Include="Messages\PlayMessage.cs" />
+    <Compile Include="Messages\StopMessage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -14,6 +14,9 @@ namespace Exercise.Akka
         public static void WriteYelow(string message) =>
             WriteWithColor(message, ConsoleColor.Yellow);
 
+        public static void WriteRed(string message) =>
+            WriteWithColor(message, ConsoleColor.Red);
+
         public static void WriteWithColor(string message, ConsoleColor color)
         {
             var before = Console.ForegroundColor;
