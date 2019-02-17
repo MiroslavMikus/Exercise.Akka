@@ -11,11 +11,14 @@ namespace Exercise.Akka
         public static void WriteGreen(string message) =>
             WriteWithColor(message, ConsoleColor.Green);
 
-        public static void WriteYelow(string message) =>
+        public static void WriteYellow(string message) =>
             WriteWithColor(message, ConsoleColor.Yellow);
 
         public static void WriteRed(string message) =>
             WriteWithColor(message, ConsoleColor.Red);
+
+        public static void WriteGray(string message) =>
+            WriteWithColor(message, ConsoleColor.Gray);
 
         public static void WriteWithColor(string message, ConsoleColor color)
         {

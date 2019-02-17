@@ -19,7 +19,7 @@ namespace Exercise.Akka.Actors
 
         private void OnReceive(PlayMessage input)
         {
-            ColorConsole.WriteYelow($"Received play message: [{input.MovieTitle}] [{input.UserId}]");
+            ColorConsole.WriteYellow($"Received play message: [{input.MovieTitle}] [{input.UserId}]");
         }
 
         protected override void PreStart()

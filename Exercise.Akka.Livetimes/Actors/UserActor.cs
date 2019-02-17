@@ -29,7 +29,7 @@ namespace Exercise.Akka.Actors
 
         private void StopMovie()
         {
-            ColorConsole.WriteYelow("Stopping " + _movie);
+            ColorConsole.WriteYellow("Stopping " + _movie);
 
             _movie = string.Empty;
 
@@ -40,7 +40,7 @@ namespace Exercise.Akka.Actors
         {
             _movie = movieTitle;
 
-            ColorConsole.WriteYelow("Watching " + _movie);
+            ColorConsole.WriteYellow("Watching " + _movie);
 
             Become(Playing);
         }
