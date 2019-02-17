@@ -1,6 +1,5 @@
 ﻿using System;
 using Akka.Actor;
-using Exercise.Akka.Hierarchy.Exceptions;
 
 namespace Exercise.Akka.Hierarchy.Actors
 {
@@ -10,8 +9,6 @@ namespace Exercise.Akka.Hierarchy.Actors
         {
             
         }
-
-    
 
         #region Lifecycle hooks
 

@@ -4,6 +4,14 @@ namespace Exercise.Akka
 {
     public static class ColorConsole
     {
+        static object locker = new object();
+
+        public static void WriteWhite(string message, params object[] args) =>
+            WriteWithColor(ConsoleColor.White, message, args);
+
+        public static void WriteCyan(string message, params object[] args) =>
+            WriteWithColor(ConsoleColor.Cyan, message, args);
+
         public static void WriteGreen(string message, params object[] args) =>
             WriteWithColor(ConsoleColor.Green, message, args);
 
@@ -18,13 +26,16 @@ namespace Exercise.Akka
 
         public static void WriteWithColor(ConsoleColor color, string message, params object[] args)
         {
-            var before = Console.ForegroundColor;
+            lock (locker)
+            {
+                var before = Console.ForegroundColor;
 
-            Console.ForegroundColor = color;
+                Console.ForegroundColor = color;
 
-            Console.WriteLine(string.Format(message, args));
+                Console.WriteLine(string.Format(message, args));
 
-            Console.ForegroundColor = before;
+                Console.ForegroundColor = before;
+            }
         }
     }
 }

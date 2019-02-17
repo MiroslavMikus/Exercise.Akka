@@ -12,31 +12,58 @@ namespace Exercise.Akka.Hierarchy.Actors
         public UserCoordinatorActor()
         {
             _users = new Dictionary<int, IActorRef>();
+
+            Receive<PlayMovieMessage>(message =>
+            {
+                CreateChildUserIfNotExist(message.UserId);
+
+                IActorRef childActor = _users[message.UserId];
+
+                childActor.Tell(message);
+            });
+
+            Receive<StopMovieMessage>(message =>
+            {
+                CreateChildUserIfNotExist(message.UserId);
+
+                IActorRef childActor = _users[message.UserId];
+
+                childActor.Tell(message);
+            });
         }
 
+        private void CreateChildUserIfNotExist(int userId)
+        {
+            if (!_users.ContainsKey(userId))
+            {
+                var childActor = Context.ActorOf(Props.Create(() => new UserActor(userId)), "User" + userId);
+                _users.Add(userId, childActor);
 
+                ColorConsole.WriteCyan("UserCooridnator actor created new child UserActor for {0}, Total: {1}", userId, _users.Count);
+            }
+        }
 
         #region Lifecycle hooks
         protected override void PreStart()
         {
-            ColorConsole.WriteLineCyan("UserCoordinatorActor PreStart");
+            ColorConsole.WriteCyan("UserCoordinatorActor PreStart");
         }
 
         protected override void PostStop()
         {
-            ColorConsole.WriteLineCyan("UserCoordinatorActor PostStop");
+            ColorConsole.WriteCyan("UserCoordinatorActor PostStop");
         }
 
         protected override void PreRestart(Exception reason, object message)
         {
-            ColorConsole.WriteLineCyan("UserCoordinatorActor PreRestart because: {0}", reason);
+            ColorConsole.WriteCyan("UserCoordinatorActor PreRestart because: {0}", reason);
 
             base.PreRestart(reason, message);
         }
 
         protected override void PostRestart(Exception reason)
         {
-            ColorConsole.WriteLineCyan("UserCoordinatorActor PostRestart because: {0}", reason);
+            ColorConsole.WriteCyan("UserCoordinatorActor PostRestart because: {0}", reason);
 
             base.PostRestart(reason);
         } 
