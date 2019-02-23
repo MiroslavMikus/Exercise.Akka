@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Exercise.Akka.Messages
+namespace Exercise_Akka.Messages
 {
     public class PlayMessage
     {

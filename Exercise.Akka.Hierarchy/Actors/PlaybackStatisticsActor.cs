@@ -1,13 +1,30 @@
 ﻿using System;
 using Akka.Actor;
+using Exercise_Akka.Hierarchy.Exceptions;
 
-namespace Exercise.Akka.Hierarchy.Actors
+namespace Exercise_Akka.Hierarchy.Actors
 {
     public class PlaybackStatisticsActor : ReceiveActor
     {
         public PlaybackStatisticsActor()
         {
-            
+            Context.ActorOf(Props.Create<MoviePlayCounterActor>(), "MoviePlayCounter");
+        }
+
+        protected override SupervisorStrategy SupervisorStrategy()
+        {
+            return new OneForOneStrategy(ex => 
+            {
+                if (ex is SimulatedCorruptStateException)
+                {
+                    return Directive.Restart;
+                }
+                if (ex is SimulatedTerribleMovieException)
+                {
+                    return Directive.Resume;
+                }
+                return Directive.Restart;
+            });
         }
 
         #region Lifecycle hooks

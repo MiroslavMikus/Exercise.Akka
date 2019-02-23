@@ -1,10 +1,13 @@
 ﻿using System;
 
-namespace Exercise.Akka
+namespace Exercise_Akka
 {
     public static class ColorConsole
     {
         static object locker = new object();
+
+        public static void WriteMagenta(string message, params object[] args) =>
+           WriteWithColor(ConsoleColor.Magenta, message, args);
 
         public static void WriteWhite(string message, params object[] args) =>
             WriteWithColor(ConsoleColor.White, message, args);

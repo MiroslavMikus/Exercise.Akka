@@ -1,12 +1,12 @@
 ﻿using Akka.Actor;
-using Exercise.Akka.Messages;
+using Exercise_Akka.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercise.Akka.Actors
+namespace Exercise_Akka.Actors
 {
     public class PlaybackActor : ReceiveActor
     {

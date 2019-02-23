@@ -1,9 +1,9 @@
 ﻿using Akka.Actor;
-using Exercise.Akka.Actors;
-using Exercise.Akka.Messages;
+using Exercise_Akka.Actors;
+using Exercise_Akka.Messages;
 using System;
 
-namespace Exercise.Akka
+namespace Exercise_Akka
 {
     internal class Program
     {

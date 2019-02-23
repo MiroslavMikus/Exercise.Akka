@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading;
 using Akka.Actor;
-using Exercise.Akka.Hierarchy.Actors;
-using Exercise.Akka.Hierarchy.Messages;
+using Exercise_Akka.Hierarchy.Actors;
+using Exercise_Akka.Hierarchy.Messages;
 
-namespace Exercise.Akka.Hierarchy
+namespace Exercise_Akka.Hierarchy
 {
     internal class Program
     {

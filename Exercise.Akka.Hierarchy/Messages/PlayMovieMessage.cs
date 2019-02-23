@@ -1,4 +1,4 @@
-﻿namespace Exercise.Akka.Hierarchy.Messages
+﻿namespace Exercise_Akka.Hierarchy.Messages
 {
     public class PlayMovieMessage
     {

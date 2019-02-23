@@ -1,8 +1,8 @@
 ﻿using Akka.Actor;
-using Exercise.Akka.Messages;
+using Exercise_Akka.Messages;
 using System;
 
-namespace Exercise.Akka.Actors
+namespace Exercise_Akka.Actors
 {
     public class UserActor : ReceiveActor
     {

@@ -1,13 +1,20 @@
 ﻿using System;
 using Akka.Actor;
-using Exercise.Akka.Hierarchy.Messages;
+using Exercise_Akka.Hierarchy.Messages;
 
-namespace Exercise.Akka.Hierarchy.Actors
+namespace Exercise_Akka.Hierarchy.Actors
 {
     public class UserActor : ReceiveActor
     {
         private readonly int _userId;
         private string _currentlyWatching;
+
+        private ActorSelection _counter;
+
+        private ActorSelection MyProperty
+        {
+            get { return _counter ?? (_counter = Context.ActorSelection("/user/Playback/PlaybackStatistics/MoviePlayCounter")); }
+        }
 
         public UserActor(int userId)
         {
@@ -21,7 +28,7 @@ namespace Exercise.Akka.Hierarchy.Actors
             Receive<PlayMovieMessage>(
                 message => ColorConsole.WriteRed(
                     "UserActor {0} Error: cannot start playing another movie before stopping existing one", _userId));
-           
+
             Receive<StopMovieMessage>(message => StopPlayingCurrentMovie());
 
             ColorConsole.WriteYellow("UserActor {0} has now become Playing", _userId);
@@ -30,18 +37,20 @@ namespace Exercise.Akka.Hierarchy.Actors
         private void Stopped()
         {
             Receive<PlayMovieMessage>(message => StartPlayingMovie(message.MovieTitle));
-          
+
             Receive<StopMovieMessage>(
                 message => ColorConsole.WriteRed("UserActor {0} Error: cannot stop if nothing is playing", _userId));
 
             ColorConsole.WriteYellow("UserActor {0} has now become Stopped", _userId);
         }
-        
+
         private void StartPlayingMovie(string title)
         {
             _currentlyWatching = title;
 
             ColorConsole.WriteYellow("UserActor {0} is currently watching '{1}'", _userId, _currentlyWatching);
+
+            _counter.Tell(new IncrementPlayCountMessage(title));
 
             Become(Playing);
         }
@@ -54,8 +63,6 @@ namespace Exercise.Akka.Hierarchy.Actors
 
             Become(Stopped);
         }
-
-
 
         #region Lifecycle hooks
         protected override void PreStart()
@@ -80,7 +87,7 @@ namespace Exercise.Akka.Hierarchy.Actors
             ColorConsole.WriteYellow("UserActor {0} PostRestart because: {1}", _userId, reason);
 
             base.PostRestart(reason);
-        } 
+        }
         #endregion
     }
 }

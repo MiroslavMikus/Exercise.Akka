@@ -1,8 +1,8 @@
 ﻿using System;
 using Akka.Actor;
-using Exercise.Akka.Hierarchy.Messages;
+using Exercise_Akka.Hierarchy.Messages;
 
-namespace Exercise.Akka.Hierarchy.Actors
+namespace Exercise_Akka.Hierarchy.Actors
 {
     public class PlaybackActor : ReceiveActor
     {

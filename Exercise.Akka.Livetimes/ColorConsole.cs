@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercise.Akka
+namespace Exercise_Akka
 {
     public static class ColorConsole
     {
